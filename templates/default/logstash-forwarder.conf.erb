@@ -1,0 +1,14 @@
+{
+  "network": {
+    "servers": <%= node['logstashforwarder']['config']['network']['servers'].to_json %>,
+    <% if node['logstashforwarder']['config']['network']['ssl_certificate'] -%>
+    "ssl certificate": <%= node['logstashforwarder']['config']['network']['ssl_certificate'].inspect %>,
+    <% end -%>
+    <% if node['logstashforwarder']['config']['network']['ssl_key'] -%>
+    "ssl key": <%= node['logstashforwarder']['config']['network']['ssl_key'].inspect %>,
+    <% end -%>
+    "ssl ca": <%= node['logstashforwarder']['config']['network']['ssl_ca'].inspect %>,
+    "timeout": <%= node['logstashforwarder']['config']['network']['timeout'].to_i %>
+  },
+  "files": <%= JSON.pretty_generate(@files) %>
+}
